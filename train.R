@@ -3,7 +3,11 @@ library(keras)
 library(dplyr)
 library(purrr)
 
-df <- read_csv("data-raw/creditcard.csv", col_types = list(Time = col_number()))
+credit_card_csv <- get_file(
+  "creditcard.csv",
+  "https://s3.amazonaws.com/r-keras-models/keras-fraud-autoencoder/creditcard.csv"
+)
+df <- read_csv(credit_card_csv, col_types = list(Time = col_number()))
 
 FLAGS <- flags(
   flag_string("normalization", "minmax", "One of minmax, zscore"),
