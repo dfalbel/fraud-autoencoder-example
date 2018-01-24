@@ -1,0 +1,25 @@
+trainingInput:
+  scaleTier: CUSTOM
+  masterType: standard_gpu
+  hyperparameters:
+    goal: MINIMIZE
+    hyperparameterMetricTag: val_loss
+    maxTrials: 10
+    maxParallelTrials: 5
+    params:
+      - parameterName: normalization
+        type: CATEGORICAL
+        categoricalValues: [zscore, minmax]
+      - parameterName: activation
+        type: CATEGORICAL
+        categoricalValues: [relu, selu, tanh, sigmoid]
+      - parameterName: learning_rate
+        type: DOUBLE
+        minValue: 0.000001
+        maxValue: 0.1
+        scaleType: UNIT_LOG_SCALE
+      - parameterName: hidden_size
+        type: INTEGER
+        minValue: 5
+        maxValue: 50
+        scaleType: UNIT_LINEAR_SCALE
